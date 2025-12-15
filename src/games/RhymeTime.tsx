@@ -84,15 +84,15 @@ export const RhymeTime: React.FC<RhymeTimeProps> = ({ onExit }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-ocean p-4">
+    <div className="min-h-screen bg-gradient-ocean p-3 sm:p-4">
       <Confetti show={showConfetti} />
       
       <div className="max-w-2xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
           <Button variant="secondary" size="sm" onClick={onExit}>
             ← Back
           </Button>
-          <div className="text-white font-bold">
+          <div className="text-white font-bold text-sm sm:text-base">
             🔥 Streak: {currentStreak}
           </div>
         </div>
@@ -100,24 +100,24 @@ export const RhymeTime: React.FC<RhymeTimeProps> = ({ onExit }) => {
         <ProgressBar current={currentIndex + 1} total={TOTAL_ROUNDS} />
       </div>
 
-      <div className="max-w-2xl mx-auto mt-8 text-center">
-        <h1 className="text-3xl font-bold text-white mb-4 text-shadow">
+      <div className="max-w-2xl mx-auto mt-6 sm:mt-8 text-center">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4 text-shadow">
           🎵 Find the Rhyme!
         </h1>
-        <p className="text-white/80 mb-8">
+        <p className="text-white/80 mb-6 sm:mb-8 text-sm sm:text-base">
           Which word rhymes with...
         </p>
         
-        <div className="bg-white/30 backdrop-blur-lg rounded-3xl p-8 glass mb-8">
-          <div className="text-7xl mb-4 animate-bounce-slow">
+        <div className="bg-white/30 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 glass mb-6 sm:mb-8">
+          <div className="text-5xl sm:text-6xl md:text-7xl mb-3 sm:mb-4 animate-bounce-slow">
             {currentRhyme.targetEmoji}
           </div>
-          <div className="text-4xl font-bold text-white text-shadow">
+          <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-shadow">
             {currentRhyme.targetWord.toUpperCase()}
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
           {shuffledOptions.map((option) => {
             const isSelected = selectedWord === option.word;
             const showFeedback = selectedWord !== null;
@@ -136,22 +136,22 @@ export const RhymeTime: React.FC<RhymeTimeProps> = ({ onExit }) => {
                 key={option.word}
                 onClick={() => handleSelectWord(option.word, option.isRhyme)}
                 disabled={selectedWord !== null}
-                className={`p-6 rounded-2xl transition-all btn-press card-hover ${bgColor}`}
+                className={`p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl transition-all btn-press card-hover ${bgColor}`}
               >
-                <div className="text-5xl mb-2">{option.emoji}</div>
-                <div className="text-xl font-bold text-white text-shadow">
+                <div className="text-3xl sm:text-4xl md:text-5xl mb-1 sm:mb-2">{option.emoji}</div>
+                <div className="text-base sm:text-lg md:text-xl font-bold text-white text-shadow">
                   {option.word.toUpperCase()}
                 </div>
                 {showFeedback && option.isRhyme && (
-                  <div className="text-green-300 mt-2">✓ Rhymes!</div>
+                  <div className="text-green-300 mt-1 sm:mt-2 text-xs sm:text-sm">✓ Rhymes!</div>
                 )}
               </button>
             );
           })}
         </div>
 
-        <div className="mt-8 p-4 bg-white/10 rounded-xl">
-          <p className="text-white/70 text-sm">
+        <div className="mt-6 sm:mt-8 p-3 sm:p-4 bg-white/10 rounded-xl">
+          <p className="text-white/70 text-xs sm:text-sm">
             💡 Tip: Rhyming words have the same ending sound!
           </p>
         </div>

@@ -22,23 +22,23 @@ export const GameCard: React.FC<GameCardProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`relative w-full p-6 rounded-3xl ${gradient} card-hover btn-press text-white text-left overflow-hidden group`}
+      className={`relative w-full p-4 sm:p-6 rounded-2xl sm:rounded-3xl ${gradient} card-hover btn-press text-white text-left overflow-hidden group`}
     >
-      <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full" />
-      <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-white/5 rounded-full" />
+      <div className="absolute -top-4 -right-4 w-20 sm:w-24 h-20 sm:h-24 bg-white/10 rounded-full" />
+      <div className="absolute -bottom-8 -left-8 w-24 sm:w-32 h-24 sm:h-32 bg-white/5 rounded-full" />
       
       <div className="relative z-10">
-        <div className="text-6xl mb-4 animate-bounce-slow group-hover:animate-wiggle">
+        <div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-4 animate-bounce-slow group-hover:animate-wiggle">
           {emoji}
         </div>
-        <h3 className="text-2xl font-bold mb-2 text-shadow">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 text-shadow">
           {title}
         </h3>
-        <p className="text-white/80 text-sm mb-4">
+        <p className="text-white/80 text-xs sm:text-sm mb-2 sm:mb-4 line-clamp-2">
           {description}
         </p>
         
-        <div className="flex items-center gap-4 text-sm">
+        <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm">
           <div className="flex items-center gap-1">
             <span>⭐</span>
             <span className="font-semibold">{stars}</span>
@@ -50,8 +50,8 @@ export const GameCard: React.FC<GameCardProps> = ({
         </div>
       </div>
       
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
-        <span className="text-2xl">▶</span>
+      <div className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+        <span className="text-xl sm:text-2xl">▶</span>
       </div>
     </button>
   );
@@ -227,12 +227,12 @@ export const AvatarSelector: React.FC<AvatarSelectorProps> = ({
   onSelect,
 }) => {
   return (
-    <div className="grid grid-cols-4 gap-3">
+    <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2 sm:gap-3">
       {avatars.map((avatar) => (
         <button
           key={avatar}
           onClick={() => onSelect(avatar)}
-          className={`text-4xl p-3 rounded-2xl transition-all btn-press ${
+          className={`text-2xl sm:text-3xl md:text-4xl p-2 sm:p-3 rounded-xl sm:rounded-2xl transition-all btn-press ${
             selected === avatar
               ? 'bg-yellow-400 scale-110 shadow-lg animate-pulse-glow'
               : 'bg-white/10 hover:bg-white/20'
@@ -261,15 +261,15 @@ export const ResultModal: React.FC<ResultModalProps> = ({
   if (!show) return null;
   
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-40 animate-pop">
-      <div className={`p-8 rounded-3xl text-center ${correct ? 'bg-gradient-forest' : 'bg-gradient-candy'}`}>
-        <div className="text-7xl mb-4 animate-bounce-slow">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-40 animate-pop p-4">
+      <div className={`p-6 sm:p-8 rounded-2xl sm:rounded-3xl text-center max-w-sm w-full ${correct ? 'bg-gradient-forest' : 'bg-gradient-candy'}`}>
+        <div className="text-5xl sm:text-7xl mb-3 sm:mb-4 animate-bounce-slow">
           {correct ? '🎉' : '💪'}
         </div>
-        <h2 className="text-3xl font-bold text-white mb-2 text-shadow">
+        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 text-shadow">
           {correct ? 'Great Job!' : 'Try Again!'}
         </h2>
-        <p className="text-white/80 mb-6">
+        <p className="text-white/80 mb-4 sm:mb-6 text-sm sm:text-base">
           {message || (correct ? 'You did amazing!' : "You're getting better!")}
         </p>
         <Button variant={correct ? 'primary' : 'secondary'} size="lg" onClick={onContinue}>

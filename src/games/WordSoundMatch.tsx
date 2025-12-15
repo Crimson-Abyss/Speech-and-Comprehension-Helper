@@ -123,15 +123,15 @@ export const WordSoundMatch: React.FC<WordSoundMatchProps> = ({ onExit }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-kids p-4">
+    <div className="min-h-screen bg-gradient-kids p-3 sm:p-4">
       <Confetti show={showConfetti} />
       
       <div className="max-w-2xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
           <Button variant="secondary" size="sm" onClick={onExit}>
             ← Back
           </Button>
-          <div className="text-white font-bold">
+          <div className="text-white font-bold text-sm sm:text-base">
             🔥 Streak: {currentStreak}
           </div>
         </div>
@@ -139,54 +139,54 @@ export const WordSoundMatch: React.FC<WordSoundMatchProps> = ({ onExit }) => {
         <ProgressBar current={currentIndex + 1} total={TOTAL_ROUNDS} />
       </div>
 
-      <div className="max-w-2xl mx-auto mt-8 text-center">
-        <h1 className="text-3xl font-bold text-white mb-4 text-shadow">
+      <div className="max-w-2xl mx-auto mt-6 sm:mt-8 text-center">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4 text-shadow">
           🎤 Say This Word!
         </h1>
         
-        <div className="bg-white/20 backdrop-blur-lg rounded-3xl p-8 glass mb-8">
-          <div className="text-9xl mb-4 animate-bounce-slow">
+        <div className="bg-white/20 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 glass mb-6 sm:mb-8">
+          <div className="text-6xl sm:text-7xl md:text-9xl mb-3 sm:mb-4 animate-bounce-slow">
             {currentWord.emoji}
           </div>
-          <div className="text-4xl font-bold text-white text-shadow mb-4">
+          <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-shadow mb-3 sm:mb-4">
             {currentWord.word.toUpperCase()}
           </div>
           
-          <Button variant="secondary" onClick={handleSpeak} className="mb-4">
+          <Button variant="secondary" onClick={handleSpeak} className="mb-2 sm:mb-4 text-sm sm:text-base">
             🔊 Hear Word
           </Button>
         </div>
 
         {isSupported ? (
-          <div className="mb-6">
+          <div className="mb-4 sm:mb-6">
             <button
               onClick={handleListen}
               disabled={isListening}
-              className={`w-32 h-32 rounded-full transition-all ${
+              className={`w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full transition-all ${
                 isListening 
                   ? 'bg-red-500 animate-pulse scale-110' 
                   : 'bg-linear-to-r from-green-400 to-emerald-500 hover:scale-105'
               } shadow-2xl flex items-center justify-center mx-auto`}
             >
-              <span className="text-6xl">
-                {isListening ? '🎙️' : '🎤'}
+              <span className="text-4xl sm:text-5xl md:text-6xl">
+                {isListening ? '🎤' : '🎤'}
               </span>
             </button>
-            <p className="text-white/80 mt-4">
+            <p className="text-white/80 mt-3 sm:mt-4 text-sm sm:text-base">
               {isListening ? 'Listening... Speak now!' : 'Tap to speak'}
             </p>
             
             {transcript && (
-              <div className="mt-4 p-4 bg-white/10 rounded-xl">
-                <p className="text-white/60 text-sm">You said:</p>
-                <p className="text-white text-2xl font-bold">"{transcript}"</p>
+              <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-white/10 rounded-xl">
+                <p className="text-white/60 text-xs sm:text-sm">You said:</p>
+                <p className="text-white text-lg sm:text-xl md:text-2xl font-bold">"{transcript}"</p>
               </div>
             )}
           </div>
         ) : (
-          <div className="bg-yellow-500/20 rounded-xl p-4 text-white">
-            <p className="mb-2">⚠️ Speech recognition not supported in this browser</p>
-            <p className="text-sm opacity-80">Try using Chrome or Edge for the best experience</p>
+          <div className="bg-yellow-500/20 rounded-xl p-3 sm:p-4 text-white">
+            <p className="mb-2 text-sm sm:text-base">⚠️ Speech recognition not supported in this browser</p>
+            <p className="text-xs sm:text-sm opacity-80">Try using Chrome or Edge for the best experience</p>
           </div>
         )}
       </div>

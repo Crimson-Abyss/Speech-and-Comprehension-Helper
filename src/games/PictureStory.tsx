@@ -80,15 +80,15 @@ export const PictureStory: React.FC<PictureStoryProps> = ({ onExit }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-sunny p-4">
+    <div className="min-h-screen bg-gradient-sunny p-3 sm:p-4">
       <Confetti show={showConfetti} />
       
       <div className="max-w-2xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
           <Button variant="secondary" size="sm" onClick={onExit}>
             ← Back
           </Button>
-          <div className="text-white font-bold text-lg">
+          <div className="text-white font-bold text-sm sm:text-base md:text-lg truncate max-w-[60%] text-right">
             {currentStory.emoji} {currentStory.title}
           </div>
         </div>
@@ -102,25 +102,25 @@ export const PictureStory: React.FC<PictureStoryProps> = ({ onExit }) => {
       </div>
 
       {phase === 'reading' && (
-        <div className="max-w-2xl mx-auto mt-8">
-          <h1 className="text-3xl font-bold text-white mb-6 text-center text-shadow">
+        <div className="max-w-2xl mx-auto mt-6 sm:mt-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6 text-center text-shadow">
             📖 Read the Story
           </h1>
           
-          <div className="bg-white/30 backdrop-blur-lg rounded-3xl p-6 md:p-8 glass">
-            <div className="text-center text-6xl mb-6 animate-bounce-slow">
+          <div className="bg-white/30 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 glass">
+            <div className="text-center text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6 animate-bounce-slow">
               {currentStory.emoji}
             </div>
             
-            <h2 className="text-2xl font-bold text-white text-center mb-6 text-shadow">
+            <h2 className="text-xl sm:text-2xl font-bold text-white text-center mb-4 sm:mb-6 text-shadow">
               {currentStory.title}
             </h2>
             
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {currentStory.paragraphs.map((paragraph, index) => (
                 <p 
                   key={index}
-                  className="text-white text-xl leading-relaxed text-center animate-pop"
+                  className="text-white text-base sm:text-lg md:text-xl leading-relaxed text-center animate-pop"
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >
                   {paragraph}
@@ -129,7 +129,7 @@ export const PictureStory: React.FC<PictureStoryProps> = ({ onExit }) => {
             </div>
           </div>
           
-          <div className="text-center mt-8">
+          <div className="text-center mt-6 sm:mt-8">
             <Button variant="success" size="lg" onClick={handleStartQuestions}>
               I'm Ready for Questions! 📝
             </Button>
@@ -138,17 +138,17 @@ export const PictureStory: React.FC<PictureStoryProps> = ({ onExit }) => {
       )}
 
       {phase === 'questions' && (
-        <div className="max-w-2xl mx-auto mt-8">
-          <h1 className="text-3xl font-bold text-white mb-6 text-center text-shadow">
+        <div className="max-w-2xl mx-auto mt-6 sm:mt-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6 text-center text-shadow">
             ❓ Question Time!
           </h1>
           
-          <div className="bg-white/30 backdrop-blur-lg rounded-3xl p-6 md:p-8 glass mb-6">
-            <p className="text-2xl font-bold text-white text-center mb-8 text-shadow">
+          <div className="bg-white/30 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 glass mb-4 sm:mb-6">
+            <p className="text-lg sm:text-xl md:text-2xl font-bold text-white text-center mb-6 sm:mb-8 text-shadow">
               {currentStory.questions[questionIndex].question}
             </p>
             
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-3 sm:gap-4">
               {currentStory.questions[questionIndex].options.map((option, index) => {
                 const isSelected = selectedAnswer === index;
                 const isCorrectAnswer = index === currentStory.questions[questionIndex].correctIndex;
@@ -168,15 +168,15 @@ export const PictureStory: React.FC<PictureStoryProps> = ({ onExit }) => {
                     key={index}
                     onClick={() => handleSelectAnswer(index)}
                     disabled={selectedAnswer !== null}
-                    className={`p-4 rounded-2xl text-white text-xl font-semibold flex items-center gap-4 transition-all btn-press ${bgColor}`}
+                    className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl text-white text-base sm:text-lg md:text-xl font-semibold flex items-center gap-3 sm:gap-4 transition-all btn-press ${bgColor}`}
                   >
-                    <span className="text-4xl">{option.emoji}</span>
-                    <span>{option.text}</span>
+                    <span className="text-2xl sm:text-3xl md:text-4xl">{option.emoji}</span>
+                    <span className="flex-1 text-left">{option.text}</span>
                     {showFeedback && isCorrectAnswer && (
-                      <span className="ml-auto text-2xl">✓</span>
+                      <span className="text-xl sm:text-2xl">✓</span>
                     )}
                     {showFeedback && isSelected && !isCorrectAnswer && (
-                      <span className="ml-auto text-2xl">✗</span>
+                      <span className="text-xl sm:text-2xl">✗</span>
                     )}
                   </button>
                 );

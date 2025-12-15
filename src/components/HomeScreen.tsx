@@ -155,38 +155,44 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
       <Leaderboard show={showLeaderboard} onClose={() => setShowLeaderboard(false)} />
 
       {/* Header */}
-      <header className="p-4 md:p-6">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="text-4xl animate-wiggle">{player.avatar}</div>
-            <div>
-              <h2 className="text-white font-bold text-lg">
-                Hi, {player.name}! 👋
-              </h2>
-              <p className="text-white/70 text-sm">
-                Level {player.level} Explorer
-              </p>
+      <header className="p-3 sm:p-4 md:p-6">
+        <div className="max-w-4xl mx-auto">
+          {/* Top row: Player info and stars */}
+          <div className="flex items-center justify-between mb-3 sm:mb-0">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="text-3xl sm:text-4xl animate-wiggle">{player.avatar}</div>
+              <div>
+                <h2 className="text-white font-bold text-base sm:text-lg">
+                  Hi, {player.name}! 👋
+                </h2>
+                <p className="text-white/70 text-xs sm:text-sm">
+                  Level {player.level} Explorer
+                </p>
+              </div>
+            </div>
+            
+            {/* Stars - always visible */}
+            <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 flex items-center gap-1.5 sm:gap-2">
+              <span className="text-xl sm:text-2xl star-gold">⭐</span>
+              <span className="text-white font-bold text-base sm:text-lg">{player.totalStars}</span>
             </div>
           </div>
           
-          <div className="flex items-center gap-2 md:gap-4">
-            <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2">
-              <span className="text-2xl star-gold">⭐</span>
-              <span className="text-white font-bold text-lg">{player.totalStars}</span>
-            </div>
+          {/* Action buttons row - scrollable on mobile */}
+          <div className="flex items-center justify-end gap-1.5 sm:gap-2 md:gap-4 overflow-x-auto pb-1 -mb-1">
             <button
               onClick={() => {
                 playSound('click');
                 setShowStats(true);
               }}
-              className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors text-xl"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors text-lg sm:text-xl flex-shrink-0"
               title="Stats"
             >
               📊
             </button>
             <button
               onClick={handleToggleMute}
-              className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors text-xl"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors text-lg sm:text-xl flex-shrink-0"
               title={soundMuted ? 'Unmute' : 'Mute'}
             >
               {soundMuted ? '🔇' : '🔊'}
@@ -197,7 +203,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
                   playSound('click');
                   setShowLeaderboard(true);
                 }}
-                className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors text-xl"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors text-lg sm:text-xl flex-shrink-0"
                 title="Leaderboard"
               >
                 🏆
@@ -205,7 +211,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
             )}
             <button
               onClick={() => setShowSetup(true)}
-              className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors text-xl"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-colors text-lg sm:text-xl flex-shrink-0"
               title="Settings"
             >
               ⚙️
@@ -213,7 +219,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
             {isOnline && user && (
               <button
                 onClick={signOut}
-                className="w-10 h-10 rounded-full bg-red-500/40 flex items-center justify-center text-white hover:bg-red-500/60 transition-colors text-xl"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-red-500/40 flex items-center justify-center text-white hover:bg-red-500/60 transition-colors text-lg sm:text-xl flex-shrink-0"
                 title="Sign Out"
               >
                 🚪
@@ -224,28 +230,28 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
       </header>
 
       {/* Main content */}
-      <main className="p-4 md:p-6">
+      <main className="p-3 sm:p-4 md:p-6">
         <div className="max-w-4xl mx-auto">
           {/* Stats summary banner */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-6 mb-8 glass">
-            <div className="flex flex-col md:flex-row items-center gap-4">
-              <div className="text-6xl animate-float">🚀</div>
-              <div className="text-center md:text-left flex-1">
-                <h1 className="text-2xl md:text-3xl font-bold text-white text-shadow mb-2">
+          <div className="bg-white/10 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-4 sm:p-6 mb-6 sm:mb-8 glass">
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+              <div className="text-5xl sm:text-6xl animate-float">🚀</div>
+              <div className="text-center sm:text-left flex-1">
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white text-shadow mb-1 sm:mb-2">
                   Ready to Learn?
                 </h1>
-                <p className="text-white/80">
+                <p className="text-white/80 text-sm sm:text-base">
                   You've played {totalProgress.gamesPlayed} games with {accuracy}% accuracy! Keep it up! 🎉
                 </p>
               </div>
               {/* Quick Stats */}
-              <div className="flex gap-3">
-                <div className="bg-white/20 rounded-2xl px-4 py-3 text-center">
-                  <div className="text-2xl font-bold text-white">{totalProgress.gamesPlayed}</div>
+              <div className="flex gap-2 sm:gap-3 w-full sm:w-auto justify-center">
+                <div className="bg-white/20 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 text-center flex-1 sm:flex-none">
+                  <div className="text-xl sm:text-2xl font-bold text-white">{totalProgress.gamesPlayed}</div>
                   <div className="text-white/70 text-xs">Games</div>
                 </div>
-                <div className="bg-white/20 rounded-2xl px-4 py-3 text-center">
-                  <div className="text-2xl font-bold text-green-400">{accuracy}%</div>
+                <div className="bg-white/20 rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2 sm:py-3 text-center flex-1 sm:flex-none">
+                  <div className="text-xl sm:text-2xl font-bold text-green-400">{accuracy}%</div>
                   <div className="text-white/70 text-xs">Accuracy</div>
                 </div>
               </div>
@@ -253,10 +259,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
           </div>
 
           {/* Games grid */}
-          <h2 className="text-xl font-bold text-white mb-4 text-shadow">
+          <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 text-shadow">
             Choose a Game
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
             {games.map((game) => (
               <GameCard
                 key={game.type}
